@@ -1,9 +1,15 @@
 buf.build/gen/go/git-age/agent/connectrpc/go v1.15.0-20240316114246-f87464bfe857.1 h1:jJarTJIH8wcim+eehi3OBKcVHbVbyrJe+HqM9+YWAEc=
 buf.build/gen/go/git-age/agent/connectrpc/go v1.15.0-20240316114246-f87464bfe857.1/go.mod h1:Jj3jOiJ5NV/KylOcXc5vWHbDg3HqJp7PXe/E4LanxLM=
+buf.build/gen/go/git-age/agent/connectrpc/go v1.16.0-20240327083355-cbf528090598.1 h1:fqum9K9P5dmHnnNoxAgDp5QBuKh3JfEiidh+xkcigqk=
+buf.build/gen/go/git-age/agent/connectrpc/go v1.16.0-20240327083355-cbf528090598.1/go.mod h1:fyJmYo/MdcY91e23nSPm13XwR4JA3gaNSYGndf00ctE=
 buf.build/gen/go/git-age/agent/protocolbuffers/go v1.33.0-20240316114246-f87464bfe857.1 h1:YRC6aeXQkCod9M9HH+57vnoeQzRmOSqErBSyXp57ihA=
 buf.build/gen/go/git-age/agent/protocolbuffers/go v1.33.0-20240316114246-f87464bfe857.1/go.mod h1:8VZqXQVoGMDFr+crrNqayFVCMdLZu8DzS4HdlB4aHDc=
+buf.build/gen/go/git-age/agent/protocolbuffers/go v1.33.0-20240327083355-cbf528090598.1 h1:2/++EoJ8lJrNS76ll3D3z9wDgFCA9+03Y6+nDCsX3ck=
+buf.build/gen/go/git-age/agent/protocolbuffers/go v1.33.0-20240327083355-cbf528090598.1/go.mod h1:8VZqXQVoGMDFr+crrNqayFVCMdLZu8DzS4HdlB4aHDc=
 connectrpc.com/connect v1.15.0 h1:lFdeCbZrVVDydAqwr4xGV2y+ULn+0Z73s5JBj2LikWo=
 connectrpc.com/connect v1.15.0/go.mod h1:bQmjpDY8xItMnttnurVgOkHUBMRT9cpsNi2O4AjKhmA=
+connectrpc.com/connect v1.16.0 h1:rdtfQjZ0OyFkWPTegBNcH7cwquGAN1WzyJy80oFNibg=
+connectrpc.com/connect v1.16.0/go.mod h1:XpZAduBQUySsb4/KO5JffORVkDI4B6/EYPi7N8xpNZw=
 connectrpc.com/grpchealth v1.3.0 h1:FA3OIwAvuMokQIXQrY5LbIy8IenftksTP/lG4PbYN+E=
 connectrpc.com/grpchealth v1.3.0/go.mod h1:3vpqmX25/ir0gVgW6RdnCPPZRcR6HvqtXX5RNPmDXHM=
 connectrpc.com/grpcreflect v1.2.0 h1:Q6og1S7HinmtbEuBvARLNwYmTbhEGRpHDhqrPNlmK+U=
