@@ -2,6 +2,8 @@ buf.build/gen/go/git-age/agent/connectrpc/go v1.15.0-20240316114246-f87464bfe857
 buf.build/gen/go/git-age/agent/connectrpc/go v1.15.0-20240316114246-f87464bfe857.1/go.mod h1:Jj3jOiJ5NV/KylOcXc5vWHbDg3HqJp7PXe/E4LanxLM=
 buf.build/gen/go/git-age/agent/protocolbuffers/go v1.33.0-20240316114246-f87464bfe857.1 h1:YRC6aeXQkCod9M9HH+57vnoeQzRmOSqErBSyXp57ihA=
 buf.build/gen/go/git-age/agent/protocolbuffers/go v1.33.0-20240316114246-f87464bfe857.1/go.mod h1:8VZqXQVoGMDFr+crrNqayFVCMdLZu8DzS4HdlB4aHDc=
+buf.build/gen/go/git-age/agent/protocolbuffers/go v1.33.0-20240327083355-cbf528090598.1 h1:2/++EoJ8lJrNS76ll3D3z9wDgFCA9+03Y6+nDCsX3ck=
+buf.build/gen/go/git-age/agent/protocolbuffers/go v1.33.0-20240327083355-cbf528090598.1/go.mod h1:8VZqXQVoGMDFr+crrNqayFVCMdLZu8DzS4HdlB4aHDc=
 connectrpc.com/connect v1.15.0 h1:lFdeCbZrVVDydAqwr4xGV2y+ULn+0Z73s5JBj2LikWo=
 connectrpc.com/connect v1.15.0/go.mod h1:bQmjpDY8xItMnttnurVgOkHUBMRT9cpsNi2O4AjKhmA=
 connectrpc.com/grpchealth v1.3.0 h1:FA3OIwAvuMokQIXQrY5LbIy8IenftksTP/lG4PbYN+E=
