@@ -19,6 +19,7 @@ import (
 	"golang.org/x/net/http2/h2c"
 
 	"github.com/prskr/git-age-keyring-agent/handlers/grpc"
+	"github.com/prskr/git-age-keyring-agent/infrastructure/httpx"
 )
 
 type ServeCliHandler struct {
@@ -31,31 +32,13 @@ type ServeCliHandler struct {
 }
 
 func (h ServeCliHandler) Run(ctx context.Context, kr keyring.Keyring) (err error) {
-	var listener net.Listener
-	if h.Http.ListenAddress.Scheme == "unix" {
-		if _, err := os.Stat(h.Http.ListenAddress.Path); err == nil {
-			if err := os.Remove(h.Http.ListenAddress.Path); err != nil {
-				return err
-			}
-		}
-
-		listener, err = net.Listen(h.Http.ListenAddress.Scheme, h.Http.ListenAddress.Path)
-		if err != nil {
-			return err
-		}
-
-		defer func() {
-			_ = os.Remove(h.Http.ListenAddress.Path)
-		}()
-	} else {
-		listener, err = net.Listen(h.Http.ListenAddress.Scheme, h.Http.ListenAddress.Host)
-		if err != nil {
-			return err
-		}
+	listener, err := h.prepareListener()
+	if err != nil {
+		return err
 	}
 
-	reflector := grpcreflect.NewStaticReflector(agentv1connect.KeyVaultServiceName, agentv1connect.RemoteIdentityServiceName, grpchealth.HealthV1ServiceName)
-	checker := grpchealth.NewStaticChecker(agentv1connect.KeyVaultServiceName, agentv1connect.RemoteIdentityServiceName)
+	reflector := grpcreflect.NewStaticReflector(grpchealth.HealthV1ServiceName, agentv1connect.IdentitiesStoreServiceName)
+	checker := grpchealth.NewStaticChecker(agentv1connect.IdentitiesStoreServiceName)
 
 	agentServer := grpc.NewAgentServer(kr)
 
@@ -64,12 +47,12 @@ func (h ServeCliHandler) Run(ctx context.Context, kr keyring.Keyring) (err error
 	mux.Handle(grpcreflect.NewHandlerV1(reflector))
 	mux.Handle(grpcreflect.NewHandlerV1Alpha(reflector))
 	mux.Handle(grpchealth.NewHandler(checker))
-	mux.Handle(agentv1connect.NewKeyVaultServiceHandler(agentServer))
+	mux.Handle(agentv1connect.NewIdentitiesStoreServiceHandler(agentServer))
 
-	fmt.Printf(`export GIT_AGE_AGENT_SOCKET="%s"`, h.Http.ListenAddress.String())
+	fmt.Printf(`export GIT_AGE_AGENT_HOST="%s"`, h.Http.ListenAddress.String())
 
 	srv := http.Server{
-		Handler:           h2c.NewHandler(mux, new(http2.Server)),
+		Handler:           h2c.NewHandler(httpx.LoggingMiddleware(mux), new(http2.Server)),
 		ReadHeaderTimeout: h.Http.ReadHeaderTimeout,
 		BaseContext: func(listener net.Listener) context.Context {
 			return ctx
@@ -92,7 +75,7 @@ func (h ServeCliHandler) Run(ctx context.Context, kr keyring.Keyring) (err error
 	return srv.Shutdown(shutdownCtx)
 }
 
-func (h ServeCliHandler) AfterApply(kctx *kong.Context) error {
+func (h ServeCliHandler) AfterApply(kongCtx *kong.Context) error {
 	keyRingCfg := keyring.Config{
 		ServiceName: h.ServiceName,
 	}
@@ -102,7 +85,21 @@ func (h ServeCliHandler) AfterApply(kctx *kong.Context) error {
 		return err
 	}
 
-	kctx.BindTo(kr, (*keyring.Keyring)(nil))
+	kongCtx.BindTo(kr, (*keyring.Keyring)(nil))
 
 	return nil
+}
+
+func (h ServeCliHandler) prepareListener() (listener net.Listener, err error) {
+	if h.Http.ListenAddress.Scheme == "unix" {
+		if _, err := os.Stat(h.Http.ListenAddress.Path); err == nil {
+			if err := os.Remove(h.Http.ListenAddress.Path); err != nil {
+				return nil, err
+			}
+		}
+
+		return net.Listen(h.Http.ListenAddress.Scheme, h.Http.ListenAddress.Path)
+	} else {
+		return net.Listen(h.Http.ListenAddress.Scheme, h.Http.ListenAddress.Host)
+	}
 }

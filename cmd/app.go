@@ -11,6 +11,7 @@ import (
 	"github.com/alecthomas/kong"
 	"github.com/lmittmann/tint"
 
+	"github.com/prskr/git-age-keyring-agent/core/ports"
 	"github.com/prskr/git-age-keyring-agent/handlers/cli"
 )
 
@@ -20,6 +21,7 @@ type App struct {
 	} `embed:""`
 
 	Serve cli.ServeCliHandler `cmd:"" name:"serve" help:"serve a keyring agent server"`
+	Keys  cli.KeysCliHandler  `cmd:"" name:"keys" help:"manage identities"`
 }
 
 func (a *App) Execute() error {
@@ -28,6 +30,7 @@ func (a *App) Execute() error {
 	cliCtx := kong.Parse(a,
 		kong.Name("git-age-keyring-agent"),
 		kong.BindTo(ctx, (*context.Context)(nil)),
+		kong.BindTo(os.Stdout, (*ports.STDOUT)(nil)),
 		kong.Vars{
 			"XDG_RUNTIME_DIR": xdg.RuntimeDir,
 		},

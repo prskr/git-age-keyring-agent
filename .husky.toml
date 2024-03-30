@@ -4,6 +4,7 @@
 pre-commit = [
     "go mod tidy -go=1.22",
     "husky lint-staged",
+    "golangci-lint run",
 ]
 
 # git hook commit msg
