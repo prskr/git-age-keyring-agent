@@ -7,7 +7,7 @@ toolchain go1.22.1
 require (
 	buf.build/gen/go/git-age/agent/connectrpc/go v1.16.0-20240327083355-cbf528090598.1
 	buf.build/gen/go/git-age/agent/protocolbuffers/go v1.33.0-20240327083355-cbf528090598.1
-	connectrpc.com/connect v1.16.0
+	connectrpc.com/connect v1.16.2
 	connectrpc.com/grpchealth v1.3.0
 	connectrpc.com/grpcreflect v1.2.0
 	filippo.io/age v1.1.1
@@ -16,7 +16,7 @@ require (
 	github.com/alecthomas/kong v0.9.0
 	github.com/lmittmann/tint v1.0.4
 	github.com/whilp/git-urls v1.0.0
-	golang.org/x/net v0.22.0
+	golang.org/x/net v0.23.0
 )
 
 require (
