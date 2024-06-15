@@ -6,7 +6,7 @@ toolchain go1.22.1
 
 require (
 	buf.build/gen/go/git-age/agent/connectrpc/go v1.16.0-20240327083355-cbf528090598.1
-	buf.build/gen/go/git-age/agent/protocolbuffers/go v1.33.0-20240327083355-cbf528090598.1
+	buf.build/gen/go/git-age/agent/protocolbuffers/go v1.34.2-20240411154421-ccdd2e6e6f4f.2
 	connectrpc.com/connect v1.16.0
 	connectrpc.com/grpchealth v1.3.0
 	connectrpc.com/grpcreflect v1.2.0
@@ -30,5 +30,5 @@ require (
 	golang.org/x/sys v0.18.0 // indirect
 	golang.org/x/term v0.18.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-	google.golang.org/protobuf v1.33.0 // indirect
+	google.golang.org/protobuf v1.34.2 // indirect
 )
