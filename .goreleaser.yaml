@@ -1,0 +1,105 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+    - go generate ./...
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - format: tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    files:
+      - LICENSE
+
+sboms:
+  - artifacts: binary
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+nfpms:
+  - id: git_age
+    package_name: git-age-keyring-agent
+    homepage: https://github.com/prskr/git-age-keyring-agent
+    maintainer: Peter Kurfer <peter.kurfer@gmail.com>
+    license: MIT
+    formats:
+      - deb
+      - rpm
+    dependencies:
+      - git
+    contents:
+      - src: LICENSE
+        dst: /usr/share/licenses/git-age/LICENSE
+
+brews:
+  - name: git-age-keyring-agent
+    homepage: https://github.com/prskr/git-age-keyring-agent
+    description: |-
+      git-age-keyring-agent is an agent for git-age to store keys in the OS keychain
+    license: "MIT"
+    commit_author:
+      name: goreleaserbot
+      email: bot@goreleaser.com
+    commit_msg_template: "chore: update {{ .ProjectName }} to version {{ .Tag }}"
+    skip_upload: auto
+    directory: Formula
+    dependencies:
+      - name: git
+        os: mac
+    test: |
+      system "#{bin}/git-age-keyring-agent --help"
+    repository:
+      owner: prskr
+      name: homebrew-the-prancing-package
+      token: "{{ .Env.GH_TAP_PAT }}"
+      pull_request:
+        enabled: true
+
+aurs:
+  - name: git-age-bin
+    homepage: https://github.com/prskr/git-age-keyring-agent
+    description: |
+      git-age-keyring-agent is an agent for git-age to store keys in the OS keychain
+    maintainers:
+      - "Peter Kurfer <peter.kurfer@gmail.com>"
+    contributors:
+      - "Peter Kurfer <peter.kurfer@gmail.com>"
+    license: "MIT"
+    private_key: "{{ .Env.AUR_KEY }}"
+    git_url: "ssh://aur@aur.archlinux.org/git-age-keyring-agent-bin.git"
+    provides:
+      - git-age-keyring-agent
+    optdepends:
+      - git
+      - git-age-bin
+    package: |-
+      # bin
+      install -Dm755 "./git-age-keyring-agent" "${pkgdir}/usr/bin/git-age-keyring-agent"
+
+      # license
+      install -Dm644 "./LICENSE" "${pkgdir}/usr/share/licenses/git-age/LICENSE"
+    commit_author:
+      name: goreleaserbot
+      email: bot@goreleaser.com
+    commit_msg_template: 'chore: update to {{ .Tag }}'
