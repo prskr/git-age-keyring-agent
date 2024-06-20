@@ -1,0 +1,9 @@
+[Unit]
+Description=Socket for git-age-keyring-agent
+
+[Socket]
+ListenStream=%t/git-age-keyring-agent.sock
+SocketMode=0660
+
+[Install]
+WantedBy=sockets.target

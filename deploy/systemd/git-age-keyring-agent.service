@@ -1,0 +1,17 @@
+[Unit]
+Description=git-age agent to store keys in OS keyring
+Requires=podman.socket
+After=podman.socket
+StartLimitBurst=3
+StartLimitIntervalSec=60s
+
+[Service]
+Type=exec
+KillMode=process
+ExecStart=/usr/bin/git-age-keyring-agent serve
+UMask=007
+RestartSec=2
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

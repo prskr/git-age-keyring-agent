@@ -11,7 +11,6 @@ import (
 	agentv1 "buf.build/gen/go/git-age/agent/protocolbuffers/go/agent/v1"
 	"connectrpc.com/connect"
 	"github.com/99designs/keyring"
-	giturls "github.com/whilp/git-urls"
 
 	"github.com/prskr/git-age-keyring-agent/core/domain"
 )
@@ -41,7 +40,7 @@ func (a *KeyVaultServer) GetIdentities(
 
 	urls := make([]*url.URL, 0, len(req.Msg.Remotes))
 	for _, raw := range req.Msg.Remotes {
-		if parsed, err := giturls.Parse(raw); err != nil {
+		if parsed, err := url.Parse(raw); err != nil {
 			return nil, connect.NewError(connect.CodeInvalidArgument, err)
 		} else {
 			urls = append(urls, parsed)
@@ -74,22 +73,10 @@ func (a *KeyVaultServer) StoreIdentity(
 	_ context.Context,
 	req *connect.Request[agentv1.StoreIdentityRequest],
 ) (*connect.Response[agentv1.StoreIdentityResponse], error) {
-	var (
-		parsedUrl *url.URL
-		err       error
-	)
-
-	if req.Msg.Remote != "" {
-		parsedUrl, err = giturls.Parse(req.Msg.Remote)
-		if err != nil {
-			return nil, connect.NewError(connect.CodeInvalidArgument, err)
-		}
-	}
-
 	id := domain.Identity{
 		PublicKey:  req.Msg.PublicKey,
 		PrivateKey: req.Msg.PrivateKey,
-		Remote:     parsedUrl,
+		Remote:     req.Msg.Remote,
 	}
 
 	itemData, err := json.Marshal(id)

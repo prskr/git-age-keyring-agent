@@ -3,12 +3,10 @@ package cli
 import (
 	"encoding/json"
 	"fmt"
-	"net/url"
 
 	"filippo.io/age"
 	"github.com/99designs/keyring"
 	"github.com/alecthomas/kong"
-	giturls "github.com/whilp/git-urls"
 
 	"github.com/prskr/git-age-keyring-agent/core/domain"
 )
@@ -26,19 +24,10 @@ func (h ImportCliHandler) Run(kr keyring.Keyring) error {
 		return fmt.Errorf("failed to parse private key: %w", err)
 	}
 
-	var parsedUrl *url.URL
-
-	if h.Remote != "" {
-		parsedUrl, err = giturls.Parse(h.Remote)
-		if err != nil {
-			return fmt.Errorf("failed to parse remote: %w", err)
-		}
-	}
-
 	id := domain.Identity{
 		PublicKey:  ageIdentity.Recipient().String(),
 		PrivateKey: ageIdentity.String(),
-		Remote:     parsedUrl,
+		Remote:     h.Remote,
 	}
 
 	itemData, err := json.Marshal(id)

@@ -15,6 +15,7 @@ import (
 	"connectrpc.com/grpcreflect"
 	"github.com/99designs/keyring"
 	"github.com/alecthomas/kong"
+	"github.com/coreos/go-systemd/v22/activation"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 
@@ -91,6 +92,12 @@ func (h ServeCliHandler) AfterApply(kongCtx *kong.Context) error {
 }
 
 func (h ServeCliHandler) prepareListener() (listener net.Listener, err error) {
+	listeners, err := activation.Listeners()
+	if err == nil && len(listeners) > 0 {
+		listener = listeners[0]
+		return listener, nil
+	}
+
 	if h.Http.ListenAddress.Scheme == "unix" {
 		if _, err := os.Stat(h.Http.ListenAddress.Path); err == nil {
 			if err := os.Remove(h.Http.ListenAddress.Path); err != nil {

@@ -43,8 +43,8 @@ func (h ListKeysCliHandler) Run(stdout ports.STDOUT, kr keyring.Keyring) error {
 		}
 
 		remote := "<none>"
-		if id.Remote != nil {
-			remote = id.Remote.String()
+		if id.Remote != "" {
+			remote = id.Remote
 		}
 
 		if _, err := fmt.Fprintf(tw, "%s\t%s\t%s\n", id.PublicKey, item.Description, remote); err != nil {
