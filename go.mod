@@ -16,7 +16,7 @@ require (
 	github.com/alecthomas/kong v0.9.0
 	github.com/coreos/go-systemd/v22 v22.5.0
 	github.com/lmittmann/tint v1.0.4
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.9.0
 	github.com/whilp/git-urls v1.0.0
 	golang.org/x/net v0.26.0
 )
