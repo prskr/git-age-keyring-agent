@@ -19,19 +19,19 @@ var _ agentv1connect.IdentitiesStoreServiceHandler = (*KeyVaultServer)(nil)
 
 func NewAgentServer(kr keyring.Keyring) *KeyVaultServer {
 	return &KeyVaultServer{
-		keyRing: kr,
+		KeyRing: kr,
 	}
 }
 
 type KeyVaultServer struct {
-	keyRing keyring.Keyring
+	KeyRing keyring.Keyring
 }
 
 func (a *KeyVaultServer) GetIdentities(
 	_ context.Context,
 	req *connect.Request[agentv1.GetIdentitiesRequest],
 ) (*connect.Response[agentv1.GetIdentitiesResponse], error) {
-	keys, err := a.keyRing.Keys()
+	keys, err := a.KeyRing.Keys()
 	if err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
@@ -50,7 +50,7 @@ func (a *KeyVaultServer) GetIdentities(
 	keysResponse := new(agentv1.GetIdentitiesResponse)
 
 	for _, key := range keys {
-		item, err := a.keyRing.Get(key)
+		item, err := a.KeyRing.Get(key)
 		if err != nil {
 			return nil, connect.NewError(connect.CodeInternal, err)
 		}
@@ -91,7 +91,7 @@ func (a *KeyVaultServer) StoreIdentity(
 		Description: req.Msg.Comment,
 	}
 
-	if err := a.keyRing.Set(item); err != nil {
+	if err := a.KeyRing.Set(item); err != nil {
 		return nil, connect.NewError(connect.CodeInternal, err)
 	}
 
