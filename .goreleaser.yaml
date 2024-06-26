@@ -77,7 +77,7 @@ brews:
         enabled: true
 
 aurs:
-  - name: git-age-bin
+  - name: git-age-keyring-agent-bin
     homepage: https://github.com/prskr/git-age-keyring-agent
     description: |
       git-age-keyring-agent is an agent for git-age to store keys in the OS keychain
