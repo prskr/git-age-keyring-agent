@@ -60,7 +60,7 @@ jobs:
           args: release --clean --snapshot
 
       - name: Release
-        uses: goreleaser/goreleaser@v6
+        uses: goreleaser/goreleaser-action@v6
         if: startsWith(github.ref, 'refs/tags/v') && contains(matrix.os, 'linux')
         with:
           distribution: goreleaser
