@@ -2,7 +2,7 @@ version: 2
 
 before:
   hooks:
-    - go mod tidy
+    - go mod tidy -go=1.22
     - go generate ./...
 
 builds:
@@ -37,26 +37,26 @@ changelog:
       - "^docs:"
       - "^test:"
 
+checksum:
+  name_template: "checksums.txt"
+
 nfpms:
-  - id: git_age
-    package_name: git-age-keyring-agent
+  - package_name: git-age-keyring-agent
     homepage: https://github.com/prskr/git-age-keyring-agent
     maintainer: Peter Kurfer <peter.kurfer@gmail.com>
     license: MIT
     formats:
       - deb
       - rpm
-    dependencies:
-      - git
     contents:
       - src: LICENSE
-        dst: /usr/share/licenses/git-age/LICENSE
+        dst: /usr/share/licenses/git-age-keyring-agent/LICENSE
 
 brews:
   - name: git-age-keyring-agent
     homepage: https://github.com/prskr/git-age-keyring-agent
-    description: |-
-      git-age-keyring-agent is an agent for git-age to store keys in the OS keychain
+    description: |
+      git-age agent to store and load identities from your OS' keyring
     license: "MIT"
     commit_author:
       name: goreleaserbot
@@ -64,9 +64,9 @@ brews:
     commit_msg_template: "chore: update {{ .ProjectName }} to version {{ .Tag }}"
     skip_upload: auto
     directory: Formula
-    dependencies:
-      - name: git
-        os: mac
+    service: |
+      run [opt_bin/"git-age-keyring-agent"]
+      keep_alive: true
     test: |
       system "#{bin}/git-age-keyring-agent --help"
     repository:

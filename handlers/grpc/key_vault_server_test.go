@@ -158,7 +158,7 @@ func TestKeyVaultServer_StoreIdentity(t *testing.T) {
 				PublicKey:  publicKey,
 				PrivateKey: privateKey,
 			},
-			errF: assert.NoError,
+			errF: assert.Error,
 			expectF: func(t assert.TestingT, val keyring.Keyring, vals ...keyring.Keyring) bool {
 				keys, err := val.Keys()
 				return assert.NoError(t, err) && assert.Len(t, keys, 1)

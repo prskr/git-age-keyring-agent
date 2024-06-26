@@ -3,6 +3,7 @@ package grpc
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"log/slog"
 	"net/url"
 	"slices"
@@ -11,11 +12,15 @@ import (
 	agentv1 "buf.build/gen/go/git-age/agent/protocolbuffers/go/agent/v1"
 	"connectrpc.com/connect"
 	"github.com/99designs/keyring"
+	giturls "github.com/whilp/git-urls"
 
 	"github.com/prskr/git-age-keyring-agent/core/domain"
 )
 
-var _ agentv1connect.IdentitiesStoreServiceHandler = (*KeyVaultServer)(nil)
+var (
+	_                 agentv1connect.IdentitiesStoreServiceHandler = (*KeyVaultServer)(nil)
+	ErrConflictingKey                                              = errors.New("conflicting key")
+)
 
 func NewAgentServer(kr keyring.Keyring) *KeyVaultServer {
 	return &KeyVaultServer{
@@ -38,13 +43,9 @@ func (a *KeyVaultServer) GetIdentities(
 
 	slices.Sort(req.Msg.Remotes)
 
-	urls := make([]*url.URL, 0, len(req.Msg.Remotes))
-	for _, raw := range req.Msg.Remotes {
-		if parsed, err := url.Parse(raw); err != nil {
-			return nil, connect.NewError(connect.CodeInvalidArgument, err)
-		} else {
-			urls = append(urls, parsed)
-		}
+	urls, err := a.parseRemotesToURLs(req.Msg.Remotes)
+	if err != nil {
+		return nil, connect.NewError(connect.CodeInvalidArgument, err)
 	}
 
 	keysResponse := new(agentv1.GetIdentitiesResponse)
@@ -73,6 +74,19 @@ func (a *KeyVaultServer) StoreIdentity(
 	_ context.Context,
 	req *connect.Request[agentv1.StoreIdentityRequest],
 ) (*connect.Response[agentv1.StoreIdentityResponse], error) {
+	if !req.Msg.Overwrite {
+		if _, err := a.KeyRing.Get(req.Msg.PublicKey); err == nil {
+			return nil, connect.NewError(connect.CodeAlreadyExists, ErrConflictingKey)
+		}
+	}
+
+	if req.Msg.Remote != "" {
+		_, err := giturls.Parse(req.Msg.Remote)
+		if err != nil {
+			return nil, connect.NewError(connect.CodeInvalidArgument, err)
+		}
+	}
+
 	id := domain.Identity{
 		PublicKey:  req.Msg.PublicKey,
 		PrivateKey: req.Msg.PrivateKey,
@@ -96,4 +110,17 @@ func (a *KeyVaultServer) StoreIdentity(
 	}
 
 	return connect.NewResponse(new(agentv1.StoreIdentityResponse)), nil
+}
+
+// parseRemotesToURLs parses raw remotes to URL objects
+func (a *KeyVaultServer) parseRemotesToURLs(remotes []string) (urls []*url.URL, err error) {
+	urls = make([]*url.URL, 0, len(remotes))
+	for _, raw := range remotes {
+		var parsed *url.URL
+		if parsed, err = giturls.Parse(raw); err != nil {
+			break
+		}
+		urls = append(urls, parsed)
+	}
+	return urls, err
 }
