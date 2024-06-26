@@ -39,12 +39,15 @@ func (a *App) Execute() error {
 	return cliCtx.Run()
 }
 
-func (a *App) AfterApply() error {
+func (a *App) AfterApply(kctx *kong.Context) error {
 	opts := &tint.Options{
 		Level:      a.Logging.Level,
 		TimeFormat: time.RFC3339,
 	}
-	slog.SetDefault(slog.New(tint.NewHandler(os.Stderr, opts)))
+	logger := slog.New(tint.NewHandler(os.Stderr, opts))
+	slog.SetDefault(logger)
+
+	kctx.Bind(logger)
 
 	return nil
 }
