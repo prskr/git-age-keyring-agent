@@ -26,6 +26,10 @@ archives:
       {{- if .Arm }}v{{ .Arm }}{{ end }}
     files:
       - LICENSE
+      - src: deploy/systemd/git-age-keyring-agent.service
+        dst: systemd/git-age-keyring-agent.service
+      - src: deploy/systemd/git-age-keyring-agent.socket
+        dst: systemd/git-age-keyring-agent.socket
 
 sboms:
   - artifacts: binary
@@ -66,7 +70,7 @@ brews:
     directory: Formula
     service: |
       run [opt_bin/"git-age-keyring-agent"]
-      keep_alive: true
+      keep_alive true
     test: |
       system "#{bin}/git-age-keyring-agent --help"
     repository:
@@ -96,6 +100,10 @@ aurs:
     package: |-
       # bin
       install -Dm755 "./git-age-keyring-agent" "${pkgdir}/usr/bin/git-age-keyring-agent"
+
+      # service
+      install -Dm644 "./systemd/git-age-keyring-agent.service" "${pkgdir}/usr/lib/systemd/system/git-age-keyring-agent.service"
+      install -Dm644 "./systemd/git-age-keyring-agent.socket" "${pkgdir}/usr/lib/systemd/system/git-age-keyring-agent.socket"
 
       # license
       install -Dm644 "./LICENSE" "${pkgdir}/usr/share/licenses/git-age/LICENSE"
