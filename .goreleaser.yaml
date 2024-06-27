@@ -124,7 +124,7 @@ aurs:
       install -Dm644 "./systemd/git-age-keyring-agent.socket" "${pkgdir}/usr/lib/systemd/system/git-age-keyring-agent.socket"
 
       # license
-      install -Dm644 "./LICENSE" "${pkgdir}/usr/share/licenses/git-age/LICENSE"
+      install -Dm644 "./LICENSE" "${pkgdir}/usr/share/licenses/git-age-keyring-agent/LICENSE"
     commit_author:
       name: goreleaserbot
       email: bot@goreleaser.com
