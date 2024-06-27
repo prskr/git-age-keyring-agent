@@ -74,3 +74,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TAP_PAT: ${{ secrets.GH_TAP_PAT }}
           AUR_KEY: ${{ secrets.AUR_SSH_KEY }}
+
+      - name: Upload RPM packages
+        if: startsWith(github.ref, 'refs/tags/v') && contains(matrix.os, 'macos')
+        run: |
+          for rpm in dist/*.rpm; do
+            curl --user prskr:${{ secrets.UPLOAD_RPM_SECRET }} \
+                --upload-file "${rpm}" \
+                https://code.icb4dc0.de/api/packages/prskr/rpm/upload
+          done
+
+      - name: Upload DEB packages
+        if: startsWith(github.ref, 'refs/tags/v') && contains(matrix.os, 'macos')
+        run: |
+          for deb in dist/*.deb; do
+            curl --user prskr:${{ secrets.UPLOAD_DEB_SECRET }} \
+                --upload-file "${deb}" \
+                https://code.icb4dc0.de/api/packages/prskr/debian/pool/bookworm/main/upload
+          done
