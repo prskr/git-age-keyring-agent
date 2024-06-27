@@ -69,7 +69,7 @@ brews:
     skip_upload: auto
     directory: Formula
     service: |
-      run [opt_bin/"git-age-keyring-agent"]
+      run [opt_bin/"git-age-keyring-agent", "serve"]
       keep_alive true
     test: |
       system "#{bin}/git-age-keyring-agent --help"
