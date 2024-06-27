@@ -55,6 +55,18 @@ nfpms:
     contents:
       - src: LICENSE
         dst: /usr/share/licenses/git-age-keyring-agent/LICENSE
+      - src: deploy/systemd/git-age-keyring-agent.service
+        dst: /usr/lib/systemd/system/git-age-keyring-agent.service
+        packager: rpm
+      - src: deploy/systemd/git-age-keyring-agent.socket
+        dst: /usr/lib/systemd/system/git-age-keyring-agent.socket
+        packager: rpm
+      - src: deploy/systemd/git-age-keyring-agent.service
+        dst: /lib/systemd/system/git-age-keyring-agent.service
+        packager: deb
+      - src: deploy/systemd/git-age-keyring-agent.socket
+        dst: /lib/systemd/system/git-age-keyring-agent.socket
+        packager: deb
 
 brews:
   - name: git-age-keyring-agent
