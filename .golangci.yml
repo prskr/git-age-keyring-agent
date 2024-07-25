@@ -1,11 +1,10 @@
-linter-settings:
+linters-settings:
   dupl:
-    threshold: 100
+    threshold: 150
   funlen:
     lines: 100
     statements: 50
   gci:
-    local-prefixes: github.com/prskr/git-age-keyring-agent
     sections:
       - standard
       - default
@@ -21,8 +20,6 @@ linter-settings:
     min-complexity: 15
   goimports:
     local-prefixes: github.com/prskr/git-age-keyring-agent
-  golint:
-    min-confidence: 0
   importas:
     no-unaliased: true
   lll:
@@ -54,7 +51,7 @@ linters:
     - goconst
     - gocritic
     - gocyclo
-    - goerr113
+    - err113
     - gofumpt
     - goimports
     - gosec
