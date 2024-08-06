@@ -12,7 +12,7 @@ require (
 	connectrpc.com/grpcreflect v1.2.0
 	filippo.io/age v1.2.0
 	github.com/99designs/keyring v1.2.2
-	github.com/adrg/xdg v0.4.0
+	github.com/adrg/xdg v0.5.0
 	github.com/alecthomas/kong v0.9.0
 	github.com/coreos/go-systemd/v22 v22.5.0
 	github.com/lmittmann/tint v1.0.4
