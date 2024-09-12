@@ -1,6 +1,11 @@
+# IDEs/editors
 .idea/
+.zed/
+
 out/
 dist/
 .gnupg/
+
+# asciidoctor
 docs/*.1*
 docs/*.html
