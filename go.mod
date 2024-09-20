@@ -5,9 +5,9 @@ go 1.23
 toolchain go1.23.1
 
 require (
-	buf.build/gen/go/git-age/agent/connectrpc/go v1.16.2-20240411154421-ccdd2e6e6f4f.1
+	buf.build/gen/go/git-age/agent/connectrpc/go v1.17.0-20240411154421-ccdd2e6e6f4f.1
 	buf.build/gen/go/git-age/agent/protocolbuffers/go v1.34.2-20240411154421-ccdd2e6e6f4f.2
-	connectrpc.com/connect v1.16.2
+	connectrpc.com/connect v1.17.0
 	connectrpc.com/grpchealth v1.3.0
 	connectrpc.com/grpcreflect v1.2.0
 	filippo.io/age v1.2.0
