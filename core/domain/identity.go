@@ -26,12 +26,11 @@ func (i Identity) MatchesRemotes(remotes ...*url.URL) bool {
 	}
 
 	_, found := slices.BinarySearchFunc(remotes, parsed, func(u1 *url.URL, u2 *url.URL) int {
+		if u1.Host == "" && u1.Path == "" {
+			return 0
+		}
 		if i := cmp.Compare(u1.Host, u2.Host); i != 0 {
 			return i
-		}
-
-		if u1.Path == "" || u2.Path == "" {
-			return 0
 		}
 
 		return cmp.Compare(strings.TrimLeft(u1.Path, "/"), strings.TrimLeft(u2.Path, "/"))
