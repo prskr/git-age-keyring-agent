@@ -10,7 +10,7 @@ require (
 	connectrpc.com/connect v1.17.0
 	connectrpc.com/grpchealth v1.3.0
 	connectrpc.com/grpcreflect v1.2.0
-	filippo.io/age v1.2.0
+	filippo.io/age v1.2.1
 	github.com/99designs/keyring v1.2.2
 	github.com/adrg/xdg v0.5.3
 	github.com/alecthomas/kong v1.4.0
