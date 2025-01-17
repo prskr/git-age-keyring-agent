@@ -9,7 +9,7 @@ require (
 	buf.build/gen/go/git-age/agent/protocolbuffers/go v1.35.2-20240411154421-ccdd2e6e6f4f.1
 	connectrpc.com/connect v1.17.0
 	connectrpc.com/grpchealth v1.3.0
-	connectrpc.com/grpcreflect v1.2.0
+	connectrpc.com/grpcreflect v1.3.0
 	filippo.io/age v1.2.0
 	github.com/99designs/keyring v1.2.2
 	github.com/adrg/xdg v0.5.3
