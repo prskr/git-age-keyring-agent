@@ -2,6 +2,8 @@ buf.build/gen/go/git-age/agent/connectrpc/go v1.17.0-20240411154421-ccdd2e6e6f4f
 buf.build/gen/go/git-age/agent/connectrpc/go v1.17.0-20240411154421-ccdd2e6e6f4f.1/go.mod h1:o6R5q96msBae4imQeAhWkvBBL82erTlKs8P3/dX+0wM=
 buf.build/gen/go/git-age/agent/protocolbuffers/go v1.35.2-20240411154421-ccdd2e6e6f4f.1 h1:I+QkKSbYpZCbN74kiLOmUxOtDlAvW3P4quLHZxndwzA=
 buf.build/gen/go/git-age/agent/protocolbuffers/go v1.35.2-20240411154421-ccdd2e6e6f4f.1/go.mod h1:5ZHLza2LY967VO75FB7D6ZjoT189/joIM+cLZRjFq4E=
+buf.build/gen/go/git-age/agent/protocolbuffers/go v1.36.5-20240411154421-ccdd2e6e6f4f.1 h1:7EbR+r/WaB3tGiijTneUUzrRD9EBaJZiEV5T1HgYMW0=
+buf.build/gen/go/git-age/agent/protocolbuffers/go v1.36.5-20240411154421-ccdd2e6e6f4f.1/go.mod h1:23MiUdIi6ZrpfRfgALfEq1IWVymSmU6B0Z9UxB67JTc=
 c2sp.org/CCTV/age v0.0.0-20240306222714-3ec4d716e805 h1:u2qwJeEvnypw+OCPUHmoZE3IqwfuN5kgDfo5MLzpNM0=
 c2sp.org/CCTV/age v0.0.0-20240306222714-3ec4d716e805/go.mod h1:FomMrUJ2Lxt5jCLmZkG3FHa72zUprnhd3v/Z18Snm4w=
 connectrpc.com/connect v1.17.0 h1:W0ZqMhtVzn9Zhn2yATuUokDLO5N+gIuBWMOnsQrfmZk=
@@ -70,6 +72,8 @@ golang.org/x/text v0.20.0 h1:gK/Kv2otX8gz+wn7Rmb3vT96ZwuoxnQlY+HlJVj7Qug=
 golang.org/x/text v0.20.0/go.mod h1:D4IsuqiFMhST5bX19pQ9ikHC2GsaKyk/oF+pn3ducp4=
 google.golang.org/protobuf v1.35.2 h1:8Ar7bF+apOIoThw1EdZl0p1oWvMqTHmpA2fRTyZO8io=
 google.golang.org/protobuf v1.35.2/go.mod h1:9fA7Ob0pmnwhb644+1+CVWFRbNajQ6iRojtC/QF5bRE=
+google.golang.org/protobuf v1.36.5 h1:tPhr+woSbjfYvY6/GPufUoYizxw1cF/yFoxJ2fmpwlM=
+google.golang.org/protobuf v1.36.5/go.mod h1:9fA7Ob0pmnwhb644+1+CVWFRbNajQ6iRojtC/QF5bRE=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20200902074654-038fdea0a05b h1:QRR6H1YWRnHb4Y/HeNFCTJLFVxaq6wH4YuVdsUOr75U=
 gopkg.in/check.v1 v1.0.0-20200902074654-038fdea0a05b/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
