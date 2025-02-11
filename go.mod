@@ -2,7 +2,7 @@ module github.com/prskr/git-age-keyring-agent
 
 go 1.23
 
-toolchain go1.23.3
+toolchain go1.24.0
 
 require (
 	buf.build/gen/go/git-age/agent/connectrpc/go v1.17.0-20240411154421-ccdd2e6e6f4f.1
