@@ -2,8 +2,7 @@ version: 2
 
 before:
   hooks:
-    - go mod tidy -go=1.22
-    - go generate ./...
+    - go mod tidy -go=1.24
 
 builds:
   - env:
@@ -128,4 +127,4 @@ aurs:
     commit_author:
       name: goreleaserbot
       email: bot@goreleaser.com
-    commit_msg_template: 'chore: update to {{ .Tag }}'
+    commit_msg_template: "chore: update to {{ .Tag }}"
