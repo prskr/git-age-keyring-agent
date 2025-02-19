@@ -56,7 +56,7 @@ linters:
     - goimports
     - gosec
     - interfacebloat
-    # - intrange
+    - intrange
     - lll
     - maintidx
     - nakedret
@@ -91,6 +91,5 @@ issues:
         - gochecknoglobals
 
 run:
-  skip-files: []
   modules-download-mode: readonly
   timeout: 5m
