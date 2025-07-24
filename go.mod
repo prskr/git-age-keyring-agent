@@ -8,7 +8,7 @@ require (
 	buf.build/gen/go/git-age/agent/connectrpc/go v1.18.1-20240411154421-ccdd2e6e6f4f.1
 	buf.build/gen/go/git-age/agent/protocolbuffers/go v1.36.5-20240411154421-ccdd2e6e6f4f.1
 	connectrpc.com/connect v1.18.1
-	connectrpc.com/grpchealth v1.3.0
+	connectrpc.com/grpchealth v1.4.0
 	connectrpc.com/grpcreflect v1.3.0
 	filippo.io/age v1.2.1
 	github.com/99designs/keyring v1.2.2
