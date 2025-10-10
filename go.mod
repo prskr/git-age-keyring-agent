@@ -1,13 +1,11 @@
 module github.com/prskr/git-age-keyring-agent
 
-go 1.24
-
-toolchain go1.24.0
+go 1.24.0
 
 require (
 	buf.build/gen/go/git-age/agent/connectrpc/go v1.18.1-20240411154421-ccdd2e6e6f4f.1
 	buf.build/gen/go/git-age/agent/protocolbuffers/go v1.36.5-20240411154421-ccdd2e6e6f4f.1
-	connectrpc.com/connect v1.18.1
+	connectrpc.com/connect v1.19.1
 	connectrpc.com/grpchealth v1.3.0
 	connectrpc.com/grpcreflect v1.3.0
 	filippo.io/age v1.2.1
@@ -223,7 +221,7 @@ require (
 	golang.org/x/term v0.29.0 // indirect
 	golang.org/x/text v0.22.0 // indirect
 	golang.org/x/tools v0.30.0 // indirect
-	google.golang.org/protobuf v1.36.5 // indirect
+	google.golang.org/protobuf v1.36.9 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
