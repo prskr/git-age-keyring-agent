@@ -14,7 +14,7 @@ require (
 	github.com/99designs/keyring v1.2.2
 	github.com/adrg/xdg v0.5.3
 	github.com/alecthomas/kong v1.8.1
-	github.com/coreos/go-systemd/v22 v22.5.0
+	github.com/coreos/go-systemd/v22 v22.7.0
 	github.com/lmittmann/tint v1.0.7
 	github.com/stretchr/testify v1.10.0
 	github.com/whilp/git-urls v1.0.0
