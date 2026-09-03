@@ -1,8 +1,6 @@
 module github.com/prskr/git-age-keyring-agent
 
-go 1.24
-
-toolchain go1.24.0
+go 1.25.0
 
 require (
 	buf.build/gen/go/git-age/agent/connectrpc/go v1.18.1-20240411154421-ccdd2e6e6f4f.1
@@ -10,7 +8,7 @@ require (
 	connectrpc.com/connect v1.18.1
 	connectrpc.com/grpchealth v1.3.0
 	connectrpc.com/grpcreflect v1.3.0
-	filippo.io/age v1.2.1
+	filippo.io/age v1.3.2
 	github.com/99designs/keyring v1.2.2
 	github.com/adrg/xdg v0.5.3
 	github.com/alecthomas/kong v1.8.1
@@ -18,7 +16,7 @@ require (
 	github.com/lmittmann/tint v1.0.7
 	github.com/stretchr/testify v1.10.0
 	github.com/whilp/git-urls v1.0.0
-	golang.org/x/net v0.35.0
+	golang.org/x/net v0.58.0
 )
 
 tool (
@@ -32,6 +30,7 @@ tool (
 require (
 	4d63.com/gocheckcompilerdirectives v1.2.1 // indirect
 	4d63.com/gochecknoglobals v0.2.2 // indirect
+	filippo.io/hpke v0.4.0 // indirect
 	github.com/4meepo/tagalign v1.4.1 // indirect
 	github.com/99designs/go-keychain v0.0.0-20191008050251-8e49817e8af4 // indirect
 	github.com/Abirdcfly/dupword v0.1.3 // indirect
@@ -171,7 +170,7 @@ require (
 	github.com/quasilyte/stdinfo v0.0.0-20220114132959-f7386bf02567 // indirect
 	github.com/raeperd/recvcheck v0.2.0 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
-	github.com/rogpeppe/go-internal v1.13.1 // indirect
+	github.com/rogpeppe/go-internal v1.16.0 // indirect
 	github.com/ryancurrah/gomodguard v1.3.5 // indirect
 	github.com/ryanrolds/sqlclosecheck v0.5.1 // indirect
 	github.com/sanposhiho/wastedassign/v2 v2.1.0 // indirect
@@ -215,14 +214,14 @@ require (
 	go.uber.org/automaxprocs v1.6.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	go.uber.org/zap v1.24.0 // indirect
-	golang.org/x/crypto v0.33.0 // indirect
+	golang.org/x/crypto v0.55.0 // indirect
 	golang.org/x/exp/typeparams v0.0.0-20250210185358-939b2ce775ac // indirect
-	golang.org/x/mod v0.23.0 // indirect
-	golang.org/x/sync v0.11.0 // indirect
-	golang.org/x/sys v0.30.0 // indirect
-	golang.org/x/term v0.29.0 // indirect
-	golang.org/x/text v0.22.0 // indirect
-	golang.org/x/tools v0.30.0 // indirect
+	golang.org/x/mod v0.39.0 // indirect
+	golang.org/x/sync v0.22.0 // indirect
+	golang.org/x/sys v0.47.0 // indirect
+	golang.org/x/term v0.45.0 // indirect
+	golang.org/x/text v0.41.0 // indirect
+	golang.org/x/tools v0.49.0 // indirect
 	google.golang.org/protobuf v1.36.5 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
